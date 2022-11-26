@@ -4,6 +4,7 @@ import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
 import Deadlinelist from './components/deadlinelist';
 import UserModals from './modals/userList';
+import PasswordModals from './modals/passwordModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <UserModals />
+      <PasswordModals />
       <NavBar user={user}/>
       <MainBodyContent days={[
         "Понедельник",
