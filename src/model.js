@@ -1,9 +1,9 @@
 export default class User {
     constructor() {
-        this.name = null;
+        this.name = "test";
         this.startweek = 1;
         this.twoweeks = false;
-        this.password = null;
+        this.password = "test";
         this.table = [
             [
                 {

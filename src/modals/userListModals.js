@@ -6,7 +6,7 @@ export default function UserModals(props) {
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [usernames, setUsernames] = useState([]);
+  const [usernames, setUsernames] = useState(props.usernames);
   const createUser = () => {};
     
   return (

@@ -1,9 +1,9 @@
 import { QRCodeRaw, QRCodeSVG } from '@cheprasov/qrcode';
+import { Buffer } from 'buffer';
 
 const generateQRCode = async (json, host = 'http://localhost:3228') => {
     const data = JSON.stringify(json);
-    const compressed = data;
-    const b64 = Buffer.from(compressed).toString('base64');
+    const b64 = Buffer.from(data).toString('base64');
     host = host.replace(/\/$/, '');
     const url = `${host}/?data=${b64}`;
     const qr = new QRCodeRaw(url);
@@ -21,7 +21,6 @@ const parseQRCode = async (url) => {
     } catch (e) {
         return null;
     }
-    return null;
 }
 
 export { generateQRCode, parseQRCode };
