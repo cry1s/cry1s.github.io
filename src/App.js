@@ -3,8 +3,10 @@ import NavBar from './components/navbar';
 import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
 import Deadlinelist from './components/deadlinelist';
-import UserModals from './modals/userListModals';
-import PasswordModals from './modals/passwordModals';
+import UserModal from './modals/userListModals';
+import PasswordModal from './modals/passwordModals';
+//import DeadlinesModal from './modals/deadlinesModals';
+import AddSubject from './modals/addsubjectModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,8 +18,9 @@ function App() {
   const user = new User();
   return (
     <div className="App">
-      <UserModals />
-      <PasswordModals />
+      <UserModal />
+      <PasswordModal />
+      <AddSubject />
       <NavBar user={user}/>
       <MainBodyContent days={[
         "Понедельник",
