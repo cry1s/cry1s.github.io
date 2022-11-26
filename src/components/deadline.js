@@ -7,11 +7,14 @@ export default function Deadline(props){
         setDeadline(props.deadline);
     }, [props.deadline]);
     return (
-        <div>
-            <p>{deadline.name}</p>
-            <p>{deadline.week}</p>
-            <p>{deadline.day}</p>
-            <p>{deadline.description}</p>
+        <div class="justify-content-center bg-primary p-2">
+            <div class="p-2 bg-light rounded">
+                <h3>{deadline.name}</h3>
+                <p>Неделя - {deadline.week}</p>
+                <p>Дата - {deadline.day}</p>
+                <p>{deadline.description}</p>
+            </div>
+
         </div>
     );
 }
