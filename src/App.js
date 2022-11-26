@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import NavBar from './components/navbar';
+import Cabinet from './components/cabinet';
+import MainBodyContent from './components/mainBodyContent';
+import Deadlinelist from './components/deadlinelist';
+import UserModals from './modals/userList';
+import PasswordModals from './modals/passwordModals';
+import User  from './model';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const users = JSON.parse(localStorage.getItem('users'));
+  if (users === null) {
+    localStorage.setItem('users', JSON.stringify([]));
+  }
+  const user = new User();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserModals />
+      <PasswordModals />
+      <NavBar user={user}/>
+      <MainBodyContent days={[
+        "Понедельник",
+        "Вторник",
+        "Среда",
+        "Четверг",
+        "Пятница",
+        "Суббота",
+        "Воскресенье"
+      ]} user={user}/>
+      <Cabinet hidden/>
+      <Deadlinelist deadlines={user.deadlines} hidden/>
     </div>
   );
 }
