@@ -2,6 +2,17 @@ import React from "react";
 import { useState, useEffect } from "react";
 import User from "../model"
 import SubjectsList from "./subjectslist";
+
+const Days = {
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6,
+}
+
 export default function MainBodyContent(props) {
     const [user, setUser] = useState(new User());
     const [curweek, setCurweek] = useState(0);
@@ -18,8 +29,8 @@ export default function MainBodyContent(props) {
             </div>
             <div className="dayswitcher">
                 {
-                    props.days.map((day) => (
-                        <button onClick={() => setCurday(day)} key={day}>{day}</button>
+                    Object.keys(Days).map((day, index) => (
+                        <button onClick={() => setCurday(index)} key={day}>{day}</button>
                     ))
                 }
             </div>

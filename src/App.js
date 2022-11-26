@@ -3,23 +3,32 @@ import NavBar from './components/navbar';
 import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
 import Deadlinelist from './components/deadlinelist';
-import UserModals from './modals/userList';
+import UserModals from './modals/userListModals';
 import PasswordModals from './modals/passwordModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const CurNav = {
+  Table: 0,
+  Deadlines: 1,
+  Cabinet: 2,
+}
+
 function App() {
   const users = JSON.parse(localStorage.getItem('users'));
+  const showModalUserList = !(users === null || users.length === 0);
   if (users === null) {
     localStorage.setItem('users', JSON.stringify([]));
   }
-  const user = new User();
+  const [user, setUser] = React.useState(new User());
+  const [curNav, setCurNav] = React.useState(CurNav.Table);
   return (
     <div className="App">
+      {showModalUserList && <UserModals />}
       <UserModals />
       <PasswordModals />
       <NavBar user={user}/>
-      <MainBodyContent days={[
+      {curNav === CurNav.Table && <MainBodyContent days={[
         "Понедельник",
         "Вторник",
         "Среда",
@@ -27,9 +36,9 @@ function App() {
         "Пятница",
         "Суббота",
         "Воскресенье"
-      ]} user={user}/>
-      <Cabinet hidden/>
-      <Deadlinelist deadlines={user.deadlines} hidden/>
+      ]} user={user}/>}
+      {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
+      {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
     </div>
   );
 }
