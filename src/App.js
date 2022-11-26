@@ -5,6 +5,7 @@ import MainBodyContent from './components/mainBodyContent';
 import Deadlinelist from './components/deadlinelist';
 import UserModals from './modals/userList';
 import User  from './model';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const users = JSON.parse(localStorage.getItem('users'));
