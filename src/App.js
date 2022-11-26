@@ -3,7 +3,7 @@ import NavBar from './components/navbar';
 import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
 import Deadlinelist from './components/deadlinelist';
-import UserModals from './modals/userList';
+import UserModals from './modals/userListModals';
 import PasswordModals from './modals/passwordModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
