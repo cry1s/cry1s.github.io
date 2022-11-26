@@ -7,6 +7,7 @@ import UserModals from './modals/userListModals';
 import PasswordModals from './modals/passwordModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from './components/footer';
 
 const CurNav = {
   Table: 0,
@@ -38,6 +39,7 @@ function App() {
       ]} user={user}/>}
       {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
       {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
+      <Footer />
     </div>
   );
 }
