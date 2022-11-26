@@ -16,7 +16,6 @@ const CurNav = {
 
 function App() {
   const users = JSON.parse(localStorage.getItem('users'));
-  const showModalUserList = !(users === null || users.length === 0);
   if (users === null) {
     localStorage.setItem('users', JSON.stringify([]));
   }
@@ -24,9 +23,9 @@ function App() {
   const [curNav, setCurNav] = React.useState(CurNav.Table);
   return (
     <div className="App">
-      {showModalUserList && <UserModals />}
       <UserModals />
-      <PasswordModals />
+      {/* <UserModals />
+      <PasswordModals /> */}
       <NavBar user={user}/>
       {curNav === CurNav.Table && <MainBodyContent days={[
         "Понедельник",

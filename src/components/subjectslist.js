@@ -10,7 +10,7 @@ export default function SubjectsList(props)
         setSubject(props.subjects);
     }, [props.subjects]);
     return (
-        <div>
+        <div class="d-grid gap-3">
             {subjects.map((subject, index) => (
                 <Subject subject={subject} key={index}/>
             ))}
