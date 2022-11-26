@@ -3,15 +3,18 @@ import NavBar from './components/navbar';
 import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
 import Deadlinelist from './components/deadlinelist';
-import User from './model';
+import UserModals from './modals/userList';
+import User  from './model';
 
 function App() {
   const users = JSON.parse(localStorage.getItem('users'));
   if (users === null) {
     localStorage.setItem('users', JSON.stringify([]));
   }
+  const user = new User();
   return (
     <div className="App">
+      <UserModals />
       <NavBar user={user}/>
       <MainBodyContent days={[
         "Понедельник",
