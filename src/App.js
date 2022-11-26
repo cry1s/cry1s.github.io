@@ -3,8 +3,10 @@ import NavBar from './components/navbar';
 import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
 import Deadlinelist from './components/deadlinelist';
-import UserModals from './modals/userListModals';
-import PasswordModals from './modals/passwordModals';
+import UserModal from './modals/userListModals';
+import PasswordModal from './modals/passwordModals';
+//import DeadlinesModal from './modals/deadlinesModals';
+import AddSubject from './modals/addsubjectModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/footer';
@@ -24,18 +26,19 @@ function App() {
   const [curNav, setCurNav] = React.useState(CurNav.Table);
   return (
     <div className="App">
-      <UserModals />
+      <UserModal />
       {/* <UserModals />
-      <PasswordModals /> */}
+      <PasswordModal />
+      <AddSubject /> */}
       <NavBar user={user}/>
       {curNav === CurNav.Table && <MainBodyContent days={[
-        "Понедельник",
-        "Вторник",
-        "Среда",
-        "Четверг",
-        "Пятница",
-        "Суббота",
-        "Воскресенье"
+        "РџРѕРЅРµРґРµР»СЊРЅРёРє",
+        "Р’С‚РѕСЂРЅРёРє",
+        "РЎСЂРµРґР°",
+        "Р§РµС‚РІРµСЂРі",
+        "РџСЏС‚РЅРёС†Р°",
+        "РЎСѓР±Р±РѕС‚Р°",
+        "Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ"
       ]} user={user}/>}
       {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
       {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
