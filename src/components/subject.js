@@ -4,10 +4,14 @@ import { useState, useEffect } from 'react';
 
 export default function Subject(props) {
     const [subject, setSubject] = useState({});
-    const [deadline] = useState('');
+    const [deadline, setDeadline] = useState('');
     useEffect(() => {
         setSubject(props.subject);
+        if (props.deadline && props.deadline.length > 0) {
+            setDeadline(props.deadline[0].deadline);
+        }
     }, [props.subject]);
+    console.log(props.deadline);
     return (
         <div class="p-2 bg-light rounded">
             <div class="row">
