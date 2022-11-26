@@ -7,12 +7,12 @@ export default function Cabinet(props) {
         setUser(props.user);
     }, [props.user]);
     return (
-        
+
         <div class="justify-content-center bg-primary p-2 rounded m-3 mt-0">
             <div class="row">
-                <h2 class="text-center mt-3">Vova's cabinet</h2>
-                    <p class = "mt-4"><b>Изменить пароль</b></p>
-                    <div>
+                <div class="col-auto rounded mx-auto mt-3 bg-light"><h2 class="text-center">Vova's cabinet</h2></div>
+                    <p class = "mt-4 text-center text-light"><b>Изменить пароль</b></p>
+                    <div class="col-auto bg-light mx-auto p-2 rounded">
                         <p>Старый пароль</p>
                         <input type="password" />
                         <p>Новый пароль</p>
@@ -21,21 +21,21 @@ export default function Cabinet(props) {
                         <input type="password" />
                         <button>Изменить</button>
                     </div>
-                    <p class = "mt-4"><b>Изменить имя</b></p>
-                    <div>
+                    <p class = "mt-4 text-center text-light"><b>Изменить имя</b></p>
+                    <div class="col-auto bg-light mx-auto p-2 rounded">
                         <p>Новое имя</p>
                         <input type="text" />
                         <button>Изменить</button>
                     </div>
-                    <p class = "mt-3"><b>Система</b></p>
+                    <p class = "mt-4 text-center text-light"><b>Система</b></p>
                     <div>
                     <div>
                         <input type="radio" id="oneweek" name="system" checked onChange={() => {}}/>
-                        <label>Каждую неделю одно и то же расписание</label> 
+                        <label class = "mt-4 text-center text-light">Каждую неделю одно и то же расписание</label> 
                     </div>
                     <div>
                         <input type="radio" id="twoweek" name="system" onChange={() => {}} />
-                        <label>Числитель и знаменатель</label>  
+                        <label class = "mt-4 text-center text-light">Числитель и знаменатель</label>  
                     </div>
                     </div>
             </div>

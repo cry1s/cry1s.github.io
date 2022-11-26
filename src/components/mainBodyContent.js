@@ -43,13 +43,13 @@ export default function MainBodyContent(props) {
                 </button>
             </div>
             <div class="container">
-                <div class="row justify-content-center my-2">
-                    <button class="col-auto rounded">Пн</button>
-                    <button class="col-auto rounded">Вт</button>
-                    <button class="col-auto rounded">Чт</button>
-                    <button class="col-auto rounded">Пт</button>
-                    <button class="col-auto rounded">Сб</button>
-                    <button class="col-auto rounded">Вс</button>
+                <div class="row justify-content-center my-3">
+                    <button class="col-auto rounded-circle">Пн</button>
+                    <button class="col-auto rounded-circle">Вт</button>
+                    <button class="col-auto rounded-circle">Чт</button>
+                    <button class="col-auto rounded-circle">Пт</button>
+                    <button class="col-auto rounded-circle">Сб</button>
+                    <button class="col-auto rounded-circle">Вс</button>
                 </div>
                 <SubjectsList subjects={user.table[curday]} />
                 <button type="button" class="btn">

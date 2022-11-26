@@ -14,7 +14,6 @@ export default function Deadline(props){
                 <p>Дата - {deadline.day}</p>
                 <p>{deadline.description}</p>
             </div>
-
         </div>
     );
 }
