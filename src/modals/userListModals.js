@@ -7,12 +7,13 @@ export default function UserModals(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [usernames, setUsernames] = useState([]);
-
+  const createUser = () => {};
+    
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Выберите пользователя или создайте нового</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         {
@@ -21,6 +22,11 @@ export default function UserModals(props) {
           ))
         }
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={createUser}>
+            Создать пользователя
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
