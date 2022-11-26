@@ -1,4 +1,4 @@
-export class User {
+export default class User {
     constructor() {
         this.name = null;
         this.startweek = 1;
