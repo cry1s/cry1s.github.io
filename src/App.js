@@ -10,6 +10,7 @@ import AddSubject from './modals/addsubjectModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/footer';
+import QRModal from './components/qrmodal';
 
 const CurNav = {
   Table: 0,
@@ -24,25 +25,23 @@ function App() {
   }
   const [user, setUser] = React.useState(new User());
   const [curNav, setCurNav] = React.useState(CurNav.Table);
+  const [showqrbool, setShowqrbool] = React.useState(false);
+  const showQRModal = () => setShowqrbool(true);
+
   return (
     <div className="App">
       <UserModal />
+      <QRModal user={user} show={showqrbool} />
       {/* <UserModals />
       <PasswordModal />
       <AddSubject /> */}
-      <NavBar user={user}/>
-      {curNav === CurNav.Table && <MainBodyContent days={[
-        "РџРѕРЅРµРґРµР»СЊРЅРёРє",
-        "Р’С‚РѕСЂРЅРёРє",
-        "РЎСЂРµРґР°",
-        "Р§РµС‚РІРµСЂРі",
-        "РџСЏС‚РЅРёС†Р°",
-        "РЎСѓР±Р±РѕС‚Р°",
-        "Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ"
-      ]} user={user}/>}
+      <NavBar user={user} setCurNav={setCurNav} />
+      {curNav === CurNav.Table && <MainBodyContent user={user}/>}
       {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
       {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
-      <Footer />
+      <div class="footer">
+        <button class="btn btn-outline-primary" onclick={showQRModal}>Импорт/Экспорт</button>
+      </div> 
     </div>
   );
 }

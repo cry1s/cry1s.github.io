@@ -7,6 +7,19 @@ export default function NavBar(props) {
     useEffect(() => {
         setUser(props.user);
     }, [props.user]);
+
+    const onHome = () => {
+        props.setCurNav(0);
+    }
+
+    const onDeadlines = () => {
+        props.setCurNav(1);
+    }
+
+    const onCabinet = () => {
+        props.setCurNav(2);
+    }
+
     return (
         <>
         <div container>
@@ -16,9 +29,9 @@ export default function NavBar(props) {
                 <div class="col-10">
                     <div class="d-flex justify-content-center pt-3">
                         <ul class="nav nav-pills rounded-top">
-                            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" aria-current="page" onClick={onHome}>Расписание</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" onClick={onDeadlines}>Дедлайны</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" onClick={onCabinet}>Кабинет</a></li>
                         </ul>
                     </div>
                 </div>
