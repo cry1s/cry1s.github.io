@@ -8,8 +8,14 @@ export default function Subject(props) {
     const [deadline, setDeadline] = useState('');
     useEffect(() => {
         setSubject(props.subject);
-        if (props.deadline && props.deadline.length > 0) {
-            setDeadline(props.deadline[0].description);
+        if (props.deadlines.length > 0) {
+            let st = '';
+            for (let i = 0; i < props.deadlines.length; i++) {
+                st += props.deadlines[i].description + '\n';
+            }
+            setDeadline(st);
+        } else {
+            setDeadline('');
         }
     }, [props.subject]);
     return (
@@ -19,7 +25,7 @@ export default function Subject(props) {
                 <p class="col">{(subject.timestart / 3600).toFixed(0) + ":" + (subject.timestart % 3600 / 60)} - {(subject.timeend / 3600).toFixed(0) + ":" + (subject.timeend % 3600 / 60)}</p>
             </div>
             <div class="justify-content-between d-flex">
-                <DeadlineModal subject={subject} deadline={deadline} name={subject.name} subjectindex={props.subjectindex}
+                <DeadlineModal subject={subject} name={subject.name} subjectindex={props.subjectindex}
                 curday={props.curday} curweek={props.curweek} userindex={props.userindex} setuser={props.setuser}/>
                 <div class="container border-start border-3 ">{deadline}</div>
             </div>

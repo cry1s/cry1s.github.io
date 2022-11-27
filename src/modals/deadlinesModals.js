@@ -29,7 +29,7 @@ export default function DeadlineModal(props) {
     setRoom('');
     setDeadlineDescription('');
   };
-
+  
   const handleShow = () => setShow(true);
 
   const addDeadline = () => {
