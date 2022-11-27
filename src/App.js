@@ -36,8 +36,6 @@ function App(props) {
   }
   const showQRModal = () => setShowqrbool(true);
 
-
-
   return (  
     <div className="App">
       <UserModal usernames={read().map((user) => user.name)} setuser={setUser} setUserIndex={setUserIndex} />
