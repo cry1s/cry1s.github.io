@@ -44,7 +44,7 @@ function App(props) {
       {curNav === CurNav.Table && <MainBodyContent user={user} deadlines={user.deadlines} userindex={userindex} setuser={setUser}/>}
       {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
       {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
-      <div class="footer m">
+      <div class="footer ">
         <div class="row justify-content-between mx-2">
           <div class="col-auto">
             <button class="btn btn-outline-primary" onClick={showQRModal}>Импорт/Экспорт</button>
