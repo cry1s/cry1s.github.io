@@ -94,6 +94,15 @@ export default function DeadlineModal(props) {
     props.setuser(users[props.userindex]);
     handleClose();
   };
+
+  const deleteSubject = () => {
+    const users = read();
+    users[props.userindex].table[props.curday].splice(props.subjectindex, 1);
+    write(users);
+    props.setuser(users[props.userindex]);
+    handleClose();
+  };
+
   return (
     <>
       <div class="btn" onClick={handleShow}>
@@ -155,7 +164,7 @@ export default function DeadlineModal(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
+          <Button variant="danger" onClick={deleteSubject}>
             Удалить предмет
           </Button>
           <Button variant="secondary" onClick={handleClose}>
