@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import NavBar from './components/navbar';
 import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
@@ -35,19 +35,26 @@ function App(props) {
     }
   }
   const showQRModal = () => setShowqrbool(true);
-  console.log(user);
+
   return (  
     <div className="App">
       <UserModal usernames={read().map((user) => user.name)} setuser={setUser} setUserIndex={setUserIndex} />
       {showqrbool && <QRModal setshow={setShowqrbool} onHide={() => setShowqrbool(false)} />}
       <NavBar user={user} setCurNav={setCurNav} />
-      {curNav === CurNav.Table && <MainBodyContent user={user} deadlines={user.deadlines} userindex={userindex} />}
+      {curNav === CurNav.Table && <MainBodyContent user={user} deadlines={user.deadlines} userindex={userindex} setuser={setUser}/>}
       {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
       {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
-      <div class="footer">
-        <button class="btn btn-outline-primary" onClick={showQRModal}>Импорт/Экспорт</button>
+      <div class="footer m">
+        <div class="row justify-content-between mx-2">
+          <div class="col-auto">
+            <button class="btn btn-outline-primary" onClick={showQRModal}>Импорт/Экспорт</button>
+          </div>
+          <div class="col-auto">
+          <button class="btn btn-outline-danger" onClick={() => {window.location.reload()}}>Выйти</button>
+        </div> 
+        </div>
       </div> 
-    </div>
+    </div>  
   );
 }
 
