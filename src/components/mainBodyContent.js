@@ -18,6 +18,7 @@ const Days = {
 export default function MainBodyContent(props) {
     const [curweek, setCurweek] = useState(1);
     const [curday, setCurday] = useState(0);
+    const [IsActive, setIsActive] = useState(0);
 
     const handlerClickStrelkaLeft = () => {
         if (curweek > 1) 
@@ -26,9 +27,13 @@ export default function MainBodyContent(props) {
     const handlerClickStrelkaRight = () => {
         setCurweek(curweek+1);
     }
+    const changeDay = (day) => {
+        setCurday(day);
+        setIsActive(day);
+    }
 
     return (
-        <div class="justify-content-center  bg-info p-2">
+        <div class="justify-content-center p-2">
             <div class="container  bg-light justify-content-between rounded d-flex ">
                 <button type="button" class="btn" onClick = {handlerClickStrelkaLeft}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
@@ -42,16 +47,29 @@ export default function MainBodyContent(props) {
                     </svg>
                 </button>
             </div>
-            <div class="container">
-                <div class="row justify-content-center my-3">
-                    <button class="col-auto rounded-circle active" onClick={() => setCurday(0)}>Пн</button>
-                    <button class="col-auto rounded-circle" onClick={() => setCurday(1)}>Вт</button>
-                    <button class="col-auto rounded-circle" onClick={() => setCurday(2)}>Ср</button>
-                    <button class="col-auto rounded-circle" onClick={() => setCurday(3)}>Чт</button>
-                    <button class="col-auto rounded-circle" onClick={() => setCurday(4)}>Пт</button>
-                    <button class="col-auto rounded-circle" onClick={() => setCurday(5)}>Сб</button>
-                    <button class="col-auto rounded-circle" onClick={() => setCurday(6)}>Вс</button>
+
+            <div class="container justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 px-3 my-3">
+                        <div class="row justify-content-between">
+                            <button class="col-auto btn rounded" onClick={() => changeDay(0)} 
+                                style={{background: IsActive == 0 ? "SkyBlue" : "white"}}>Пн</button>   
+                            <button class="col-auto btn rounded" onClick={() => changeDay(1)} 
+                                style={{background: IsActive == 1 ? "SkyBlue" : "white"}}>Вт</button>
+                            <button class="col-auto btn rounded" onClick={() => changeDay(2)}
+                                style={{background: IsActive == 2 ? "SkyBlue" : "white"}}>Ср</button>
+                            <button class="col-auto btn rounded" onClick={() => changeDay(3)}
+                                style={{background: IsActive == 3 ? "SkyBlue" : "white"}}>Чт</button>
+                            <button class="col-auto btn rounded" onClick={() => changeDay(4)}
+                                style={{background: IsActive == 4 ? "SkyBlue" : "white"}}>Пт</button>
+                            <button class="col-auto btn rounded" onClick={() => changeDay(5)}
+                                style={{background: IsActive == 5 ? "SkyBlue" : "white"}}>Сб</button>
+                            <button class="col-auto btn rounded" onClick={() => changeDay(6)}
+                                style={{background: IsActive == 6 ? "SkyBlue" : "white"}}>Вс</button>
+                        </div>
+                    </div>
                 </div>
+
                 <SubjectsList subjects={props.user.table[curday + (props.user.twoweeks && (curweek % 2 == 0)) * 7]} curweek={curweek} curday={curday} deadlines={props.user.deadlines}
                 userindex={props.userindex} setuser={props.setuser}/>
                 <AddSubject userindex={props.userindex} curweek={curweek} curday={curday + (props.user.twoweeks && curweek % 2 == 0) * 7} setuser={props.setuser}/>
