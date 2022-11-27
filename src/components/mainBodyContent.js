@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import AddSubject from "../modals/addsubjectModals";
 import User from "../model"
 import SubjectsList from "./subjectslist";
+import { read } from "../localstorageutil";
 
 const Days = {
     Monday: 0,
@@ -17,6 +18,7 @@ const Days = {
 export default function MainBodyContent(props) {
     const [curweek, setCurweek] = useState(1);
     const [curday, setCurday] = useState(0);
+
     const handlerClickStrelkaLeft = () => {
         if (curweek > 1) 
             setCurweek(curweek-1);
@@ -51,7 +53,7 @@ export default function MainBodyContent(props) {
                     <button class="col-auto rounded-circle" onClick={() => setCurday(6)}>Вс</button>
                 </div>
                 <SubjectsList subjects={props.user.table[curday + (props.user.twoweeks && (curweek % 2 == 0)) * 7]} curweek={curweek} curday={curday} deadlines={props.user.deadlines} />
-                <AddSubject userindex={props.userindex} curweek={curweek} curday={curday + (props.user.twoweeks && curweek % 2 == 0) * 7}/>
+                <AddSubject userindex={props.userindex} curweek={curweek} curday={curday + (props.user.twoweeks && curweek % 2 == 0) * 7} setuser={props.setuser}/>
             </div>
         </div>
     );
