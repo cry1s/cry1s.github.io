@@ -14,7 +14,7 @@ const Days = {
 }
 
 export default function MainBodyContent(props) {
-    const [user, setUser] = useState(new User());
+    const [user, setUser] = useState(props.user);
     const [curweek, setCurweek] = useState(1);
     const [curday, setCurday] = useState(0);
     const handlerClickStrelkaLeft = () => {
@@ -24,9 +24,7 @@ export default function MainBodyContent(props) {
     const handlerClickStrelkaRight = () => {
         setCurweek(curweek+1);
     }
-    useEffect(() => {
-        setUser(props.user);
-    }, [props.user]);
+
     return (
         <div class="justify-content-center bg-primary p-2">
             <div class="container bg-light justify-content-between rounded d-flex">
@@ -44,7 +42,7 @@ export default function MainBodyContent(props) {
             </div>
             <div class="container">
                 <div class="row justify-content-center my-3">
-                    <button class="col-auto rounded-circle" onClick={() => setCurday(0)}>Пн</button>
+                    <button class="col-auto rounded-circle active" onClick={() => setCurday(0)}>Пн</button>
                     <button class="col-auto rounded-circle" onClick={() => setCurday(1)}>Вт</button>
                     <button class="col-auto rounded-circle" onClick={() => setCurday(2)}>Ср</button>
                     <button class="col-auto rounded-circle" onClick={() => setCurday(3)}>Чт</button>
@@ -52,7 +50,7 @@ export default function MainBodyContent(props) {
                     <button class="col-auto rounded-circle" onClick={() => setCurday(5)}>Сб</button>
                     <button class="col-auto rounded-circle" onClick={() => setCurday(6)}>Вс</button>
                 </div>
-                <SubjectsList subjects={user.table[curday]} curweek={curweek} curday={curday} deadlines={props.deadlines} />
+                <SubjectsList subjects={user.table[curday + (user.twoweeks && curweek % 2 == 0) * 7]} curweek={curweek} curday={curday} deadlines={user.deadlines} />
                 <button type="button" class="btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>

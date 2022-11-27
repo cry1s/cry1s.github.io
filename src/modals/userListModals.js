@@ -15,6 +15,12 @@ export default function UserModals(props) {
     const users = read();
     setUsernames(users.map(user => user.name));
   };
+
+  const login = (username) => {
+    props.setuser(username);
+    props.setUserIndex(usernames.indexOf(username));
+    handleClose();
+  };
   
   return (
     <>
@@ -25,7 +31,7 @@ export default function UserModals(props) {
         <Modal.Body>
         {
           usernames.map((username, index) => (
-            <PasswordModal key={index} username={username} />
+            <PasswordModal key={index} username={username} setuser={login} />
           ))
         }
         </Modal.Body>
