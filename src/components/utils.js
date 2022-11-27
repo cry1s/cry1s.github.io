@@ -53,7 +53,7 @@ function lzw_decode(s) {
     return out.join("");
 }
 
-const generateQRCode = async (json, host = 'http://localhost:3228') => {
+const generateQRCode = async (json, host = 'https://cry1s.github.io/dumaem2') => {
     const data = JSON.stringify(json);
     const b64 = Buffer.from(data).toString('base64');
     host = host.replace(/\/$/, '');
