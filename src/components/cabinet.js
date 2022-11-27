@@ -103,16 +103,6 @@ export default function Cabinet(props) {
                         </div>
 
                     </div>
-                    
-                    <div class="col-11 bg-light mt-4 p-2 px-3 rounded border shadow">   
-                        <p class = "mb-0">Система</p>
-                            <input  class="me-2" type="radio" id="oneweek" name="system" checked onChange={() => {}}/>
-                            <label class = "mt-2 text-center">Oдно и то же расписание</label>
-                        <div>
-                            <input class="me-2" type="radio" id="twoweek" name="system" onChange={() => {}} />
-                            <label class = " text-center">Числитель и знаменатель</label>  
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
