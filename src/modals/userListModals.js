@@ -9,23 +9,33 @@ export default function UserModals(props) {
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [usernames, setUsernames] = useState(read().map((user) => user.name));
+  const [usernames, setUsernames] = useState(props.usernames);
 
   const updateList = () => {
     const users = read();
     setUsernames(users.map(user => user.name));
   };
   
+  const login = (username) => {
+    props.setuser(read().find(user => user.name === username));
+    props.setUserIndex(usernames.indexOf(username));
+    console.log(read().find(user => user.name === username));
+    handleClose();
+  };
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Выберите пользователя или создайте нового</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
         {
           usernames.map((username, index) => (
-            <PasswordModal key={index} username={username} />
+            <div class="container m-2">
+              <PasswordModal key={index} username={username} setuser={login}/>
+            </div>
           ))
         }
         </Modal.Body>

@@ -4,8 +4,6 @@ import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
 import Deadlinelist from './components/deadlinelist';
 import UserModal from './modals/userListModals';
-import PasswordModal from './modals/passwordModals';
-import AddSubject from './modals/addsubjectModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import QRModal from './components/qrmodal';
@@ -21,7 +19,7 @@ const CurNav = {
 
 function App(props) {
   const [user, setUser] = useState(new User());
-  const [userindex, setUserIndex] = useState(0);
+  const [userindex, setUserIndex] = useState(null);
   const [curNav, setCurNav] = useState(CurNav.Table);
   const [showqrbool, setShowqrbool] = useState(false);
   const [data, setData] = useSearchParams();
@@ -38,18 +36,14 @@ function App(props) {
   }
   const showQRModal = () => setShowqrbool(true);
 
-  useEffect(() => {
-    const users = read();
-    console.log(data);
-    console.log('props', props);
-  }, []);
+
 
   return (  
     <div className="App">
-      <UserModal usernames={read().map((user) => user.name)} user={user} setUser={setUser} />
+      <UserModal usernames={read().map((user) => user.name)} setuser={setUser} setUserIndex={setUserIndex} />
       {showqrbool && <QRModal setshow={setShowqrbool} onHide={() => setShowqrbool(false)} />}
       <NavBar user={user} setCurNav={setCurNav} />
-      {curNav === CurNav.Table && <MainBodyContent user={user} deadlines={user.deadlines}/>}
+      {curNav === CurNav.Table && <MainBodyContent user={user} deadlines={user.deadlines} userindex={userindex} />}
       {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
       {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
       <div class="footer">

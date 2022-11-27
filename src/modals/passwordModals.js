@@ -2,17 +2,27 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { read } from '../localstorageutil';
 
 export default function PasswordModal(props) {
   const [show, setShow] = useState(false);
+  const [password, setPassword] = useState('');
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [buttonName, setButtonName] = useState(props.username);
-
+  const login = () => {
+    const users = read();
+    const user = users.find(user => user.name === props.username);
+    if (user.password === password) {
+      props.setuser(props.username);
+      handleClose();
+    } else {
+      alert('Неверный пароль');
+    }
+  };
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        {buttonName}
+        {props.username}
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -24,6 +34,8 @@ export default function PasswordModal(props) {
               <Form.Control
                 type="password"
                 autoFocus
+                placeholder="Введите пароль"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
           </Form>
@@ -32,7 +44,7 @@ export default function PasswordModal(props) {
           <Button variant="secondary" onClick={handleClose}>
             Закрыть
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={login}>
             Войти
           </Button>
         </Modal.Footer>
