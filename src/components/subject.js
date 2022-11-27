@@ -13,7 +13,7 @@ export default function Subject(props) {
     }, [props.subject]);
     console.log(props.deadline);
     return (
-        <div class="p-2 bg-light rounded">
+        <div class="p-2 bg-light rounded shadow">
             <div class="row">
                 <h3 class="col">{subject.name}</h3>
                 <p class="col">{(subject.timestart / 3600).toFixed(0) + ":" + (subject.timestart % 3600 / 60)} - {(subject.timeend / 3600).toFixed(0) + ":" + (subject.timeend % 3600 / 60)}</p>
