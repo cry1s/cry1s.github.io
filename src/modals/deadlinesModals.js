@@ -61,11 +61,12 @@ export default function DeadlineModal(props) {
       return 0;
     });
     write(users);
+    props.setuser(users[props.userindex]);
     handleClose();
   };
 
   const changeSubject = () => {
-    if (!name || !timestart || !timeend || !teacher || !room) {
+    if (!name && !timestart && !timeend && !teacher && !room) {
       return;
     }
     const newsubject = {
@@ -82,9 +83,26 @@ export default function DeadlineModal(props) {
     users[props.userindex].table[props.curday].sort((a, b) => {
       return a.timestart - b.timestart;
     });
+    if (name) {
+      users[props.userindex].deadlines.map((deadline) => {
+        if (deadline.name === props.subject.name) {
+          deadline.name = name;
+        }
+      });
+    }
     write(users);
+    props.setuser(users[props.userindex]);
     handleClose();
   };
+
+  const deleteSubject = () => {
+    const users = read();
+    users[props.userindex].table[props.curday].splice(props.subjectindex, 1);
+    write(users);
+    props.setuser(users[props.userindex]);
+    handleClose();
+  };
+
   return (
     <>
       <div class="btn" onClick={handleShow}>
@@ -146,7 +164,7 @@ export default function DeadlineModal(props) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
+          <Button variant="danger" onClick={deleteSubject}>
             Удалить предмет
           </Button>
           <Button variant="secondary" onClick={handleClose}>
