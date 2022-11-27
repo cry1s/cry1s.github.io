@@ -24,7 +24,9 @@ export default function UserModals(props) {
         <Modal.Body>
         {
           usernames.map((username, index) => (
-            <Button variant="primary" onClick={handleClose} key={index}>  {username}  </Button>
+            <div class="container m-2">
+              <Button type="button" class="btn btn-outline-primary"  onClick={handleClose} key={index}>  {username}  </Button>
+            </div>
           ))
         }
         </Modal.Body>
