@@ -16,7 +16,7 @@ export default function Subject(props) {
         <div class="p-2 bg-light rounded">
             <div class="row">
                 <h3 class="col">{subject.name}</h3>
-                <p class="col">{subject.timestart}.{subject.timestart % 3600 / 60} - {subject.timeend / 3600}.{subject.timeend % 3600 / 60}</p>
+                <p class="col">{Math.floor(subject.timestart / 3600)}:{Math.floor(subject.timestart % 3600 / 60)} - {Math.floor(subject.timeend / 3600)}:{Math.floor(subject.timeend % 3600 / 60)}</p>
             </div>
             <div class="justify-content-between d-flex">
                 <div class="btn">

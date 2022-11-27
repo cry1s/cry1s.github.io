@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import NavBar from './components/navbar';
 import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
@@ -37,7 +37,7 @@ function App(props) {
     }
   }
   const showQRModal = () => setShowqrbool(true);
-  
+
   useEffect(() => {
     const users = read();
     console.log(data);
@@ -54,6 +54,7 @@ function App(props) {
       {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
       <div class="footer">
         <button class="btn btn-outline-primary" onClick={showQRModal}>Импорт/Экспорт</button>
+        <button class="btn btn-outline-primary" onClick={() => {window.location.reload()}}>Выйти</button>
       </div> 
     </div>
   );
