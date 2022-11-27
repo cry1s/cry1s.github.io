@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBar from './components/navbar';
 import Cabinet from './components/cabinet';
 import MainBodyContent from './components/mainBodyContent';
@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import QRModal from './components/qrmodal';
 import { parseQRCode } from './components/utils';
 import {read, write, add} from './localstorageutil';
+import { useSearchParams } from 'react-router-dom';
 
 const CurNav = {
   Table: 0,
@@ -18,15 +19,29 @@ const CurNav = {
   Cabinet: 2,
 }
 
-function App() {
-  const [user, setUser] = React.useState(new User());
-  const [userindex, setUserIndex] = React.useState(0);
-  const [curNav, setCurNav] = React.useState(CurNav.Table);
-  const [showqrbool, setShowqrbool] = React.useState(false);
+function App(props) {
+  const [user, setUser] = useState(new User());
+  const [userindex, setUserIndex] = useState(0);
+  const [curNav, setCurNav] = useState(CurNav.Table);
+  const [showqrbool, setShowqrbool] = useState(false);
+  const [data, setData] = useSearchParams();
+  if (data.get('data') !== null) {
+    const user = parseQRCode(data.get('data'));
+    if (user !== null && user.name) {
+      if (read().findIndex(u => u.name === user.name) === -1) {
+        add(user);
+      } else {
+        alert('Пользователь с таким именем уже существует');
+      }
+      setData(new URLSearchParams());
+    }
+  }
   const showQRModal = () => setShowqrbool(true);
   
   useEffect(() => {
     const users = read();
+    console.log(data);
+    console.log('props', props);
   }, []);
 
   return (  

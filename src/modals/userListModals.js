@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { read } from '../localstorageutil';
+import UserCreateModals from './usercreateModals';
 
 export default function UserModals(props) {
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [usernames, setUsernames] = useState(props.usernames);
-  const createUser = () => {};
-    
+
+  const updateList = () => {
+    const users = read();
+    setUsernames(users.map(user => user.username));
+  };
+  
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -23,9 +29,7 @@ export default function UserModals(props) {
         }
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={createUser}>
-            Создать пользователя
-          </Button>
+          <UserCreateModals updatelist={updateList} />
         </Modal.Footer>
       </Modal>
     </>

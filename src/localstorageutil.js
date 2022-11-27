@@ -1,7 +1,11 @@
 // localstorageutil.js
 
 const read = function() {
-    return JSON.parse(localStorage.getItem("users"));
+    const users = JSON.parse(localStorage.getItem("users"));
+    if (users === null) {
+        return [];
+    }
+    return users;
 }
 
 const write = function(users) {
@@ -14,4 +18,10 @@ const add = function(user) {
     write(users);
 }
 
-export { read, write, add };
+const remove = function(index) {
+    const users = read();
+    users.splice(index, 1);
+    write(users);
+}
+
+export { read, write, add, remove };
