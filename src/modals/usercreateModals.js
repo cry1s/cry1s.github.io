@@ -60,17 +60,17 @@ export default function UserCreateModals(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <label class="mb-3">
-              Имя:
-              <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </label>
-            <label class="mb-3">
-              Пароль:
-              <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
+
+            <div class="col-auto mb-3"><input type="text" class="form-control" placeholder="Введите имя"
+                            value={username} onChange={e => setUsername(e.target.value)} /></div>
+
+              <div class="col-auto mb-3"><input type="text" class="form-control" placeholder="Введите пароль"
+                            value={password} onChange={e => setPassword(e.target.value)} /></div>
+
+            
             <label class="mb-3">
               Система расписания:
-              <select value={twoweeks} onChange={e => setTwoWeeks(e.target.value)}>
+              <select class="mt-3" value={twoweeks} onChange={e => setTwoWeeks(e.target.value)}>
                 <option value="true">Две недели (Числитель и знаменатель)</option>
                 <option value="false">Одно и тоже расписание</option>
               </select>
