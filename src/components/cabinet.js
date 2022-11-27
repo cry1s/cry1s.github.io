@@ -8,7 +8,7 @@ export default function Cabinet(props) {
     }, [props.user]);
     return (
 
-        <div class="justify-content-center bg-primary p-2 rounded m-3 mt-0">
+        <div class="justify-content-center bg-info p-2 rounded mt-0">
             <div class="row">
                 <div class="col-auto rounded mx-auto mt-3 bg-light"><h2 class="text-center">Vova's cabinet</h2></div>
                     <p class = "mt-4 text-center text-light"><b>Изменить пароль</b></p>
@@ -22,21 +22,21 @@ export default function Cabinet(props) {
                         <button>Изменить</button>
                     </div>
                     <p class = "mt-4 text-center text-light"><b>Изменить имя</b></p>
-                    <div class="col-auto bg-light mx-auto p-2 rounded">
+                    <div class="col-11 bg-light mx-auto p-2 rounded">
                         <p>Новое имя</p>
                         <input type="text" />
                         <button>Изменить</button>
                     </div>
                     <p class = "mt-4 text-center text-light"><b>Система</b></p>
-                    <div>
-                    <div>
-                        <input type="radio" id="oneweek" name="system" checked onChange={() => {}}/>
-                        <label class = "mt-4 text-center text-light">Каждую неделю одно и то же расписание</label> 
-                    </div>
-                    <div>
-                        <input type="radio" id="twoweek" name="system" onChange={() => {}} />
-                        <label class = "mt-4 text-center text-light">Числитель и знаменатель</label>  
-                    </div>
+                    <div class ="col-11 bg-light mx-auto p-2 rounded shadow">
+                        <div>
+                            <input type="radio" id="oneweek" name="system" checked onChange={() => {}}/>
+                            <label class = "mt-2 text-center">Каждую неделю одно и то же расписание</label> 
+                        </div>
+                        <div>
+                            <input type="radio" id="twoweek" name="system" onChange={() => {}} />
+                            <label class = "mt-2 text-center">Числитель и знаменатель</label>  
+                        </div>
                     </div>
             </div>
         </div>

@@ -32,9 +32,9 @@ export default function NavBar(props) {
                 </div>
                 <div class="col-10">
                     <div class="d-flex justify-content-center pt-3">
-                        <button class="btn"  onClick={onHome} >Расписание</button>
-                        <button class="btn" onClick={onDeadlines} >Дедлайны</button>
-                        <button class="btn" onClick={onCabinet} >Кабинет</button>    
+                        <button class="btn rounded-0 rounded-top" onClick={onHome} >Расписание</button>
+                        <button class="btn rounded-0 rounded-top" onClick={onDeadlines} >Дедлайны</button>
+                        <button class="btn rounded-0 rounded-top" onClick={onCabinet} >Кабинет</button>    
                     </div>
                 </div>
                 <div class="col-1">
