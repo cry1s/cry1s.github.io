@@ -27,6 +27,22 @@ export default function MainBodyContent(props) {
         setCurweek(curweek+1);
     }
 
+    useEffect(() => {
+        const date = new Date();
+        const firstweek = props.user.startweek;
+        const getMonday = (date) => {
+            const day = date.getDay() || 7;
+            if (day !== 1)
+              date.setHours(-24 * (day - 1));
+            return date;
+          }
+        const monday = getMonday(date);
+        const days = monday - firstweek;
+        const weeks = Math.floor(days / 604800000);
+        setCurweek(weeks+1 > 0 ? weeks+1 : 1);
+        setCurday(date.getDay() % 7);
+    }, [props.user.startweek]);
+
     return (
         <div class="justify-content-center  bg-info p-2">
             <div class="container  bg-light justify-content-between rounded d-flex ">
