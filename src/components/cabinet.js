@@ -8,34 +8,38 @@ export default function Cabinet(props) {
     }, [props.user]);
     return (
 
-        <div class="justify-content-center bg-info p-2 rounded mt-0">
-            <div class="row">
-                <div class="col-auto rounded mx-auto mt-3 bg-light"><h2 class="text-center">Vova's cabinet</h2></div>
-                    <p class = "mt-4 text-center text-light"><b>Изменить пароль</b></p>
-                    <div class="col-auto bg-light mx-auto p-2 rounded">
-                        <p>Старый пароль</p>
-                        <input type="password" />
-                        <p>Новый пароль</p>
-                        <input type="password" />
-                        <p>Повторите новый пароль</p>
-                        <input type="password" />
-                        <button>Изменить</button>
-                    </div>
-                    <p class = "mt-4 text-center text-light"><b>Изменить имя</b></p>
-                    <div class="col-11 bg-light mx-auto p-2 rounded">
-                        <p>Новое имя</p>
-                        <input type="text" />
-                        <button>Изменить</button>
-                    </div>
-                    <p class = "mt-4 text-center text-light"><b>Система</b></p>
-                    <div class ="col-11 bg-light mx-auto p-2 rounded shadow">
-                        <div>
-                            <input type="radio" id="oneweek" name="system" checked onChange={() => {}}/>
-                            <label class = "mt-2 text-center">Каждую неделю одно и то же расписание</label> 
+        <div class="justify-content-center p-2 rounded m-0">
+            <div class="row justify-content-center">
+                    <div class="col-auto rounded mx-auto mt-3 bg-light"><h2 class="text-center">Vova's cabinet</h2></div>
+
+                    <div class="col-11 bg-light my-4 p-2 px-3 rounded border shadow">
+                        <label for="exampleInputPassword1" class = "mb-2" >Изменить пароль</label>
+                        <div class="col-auto mb-3"><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Старый пароль"/></div>
+                        <div class="col-auto mb-3"><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Новый пароль"/></div>
+                        <div class="row justify-content-between">
+                            <div class="col mb-3"><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Повторите пароль"/></div>
+                            <div class="col-auto"><button class="btn btn-primary ">Изменить</button></div>
                         </div>
+                    </div>
+                    
+                    <div class="col-11 bg-light my-4 p-2 px-3 rounded border shadow">   
+                        <label for="exampleInputPassword1" class = "mb-2" >Изменить имя</label>
+                        <div class="container m-0 p-0 ">
+                            <div class="row justify-content-between">
+                                <div class="col mb-3"><input type="password" class="form-control" id="exampleInputPassword1" placeholder="Новое имя"/></div>
+                                <div class="col-auto "><button class="btn btn-primary ">Изменить</button></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-11 bg-light my-4 p-2 px-3 rounded border shadow">   
+                        <p class = "mb-0">Система</p>
+                            <input  class="me-2" type="radio" id="oneweek" name="system" checked onChange={() => {}}/>
+                            <label class = "mt-2 text-center">Oдно и то же расписание</label>
                         <div>
-                            <input type="radio" id="twoweek" name="system" onChange={() => {}} />
-                            <label class = "mt-2 text-center">Числитель и знаменатель</label>  
+                            <input class="me-2" type="radio" id="twoweek" name="system" onChange={() => {}} />
+                            <label class = " text-center">Числитель и знаменатель</label>  
                         </div>
                     </div>
             </div>
