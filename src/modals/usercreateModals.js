@@ -60,32 +60,34 @@ export default function UserCreateModals(props) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <label>
+            <label class="mb-3">
               Имя:
               <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
             </label>
-            <label>
+            <label class="mb-3">
               Пароль:
               <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
             </label>
-            <label>
+            <label class="mb-3">
               Система расписания:
               <select value={twoweeks} onChange={e => setTwoWeeks(e.target.value)}>
                 <option value="true">Две недели (Числитель и знаменатель)</option>
-                <option value="false">Каждую неделю одно расписание</option>
+                <option value="false">Одно и тоже расписание</option>
               </select>
             </label>
-            <label>
+            <label class="mb-5">
               Выбор даты первой недели:
               <input type="date" onChange={e => setFirstWeek(e.target.value)} />
             </label>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={createUser}>
+            <hr class="my-5" />
+            <div class="row justify-content-center">
+            <Button  class="btn btn-outline-primary mt-3" variant="primary" onClick={createUser}>
             Создать пользователя
           </Button>
-        </Modal.Footer>
+          </div>
+          </Form>
+        </Modal.Body>
+        
       </Modal>
     </>
   );
