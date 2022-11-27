@@ -32,6 +32,22 @@ export default function MainBodyContent(props) {
         setIsActive(day);
     }
 
+    useEffect(() => {
+        const date = new Date();
+        const firstweek = props.user.startweek;
+        const getMonday = (date) => {
+            const day = date.getDay() || 7;
+            if (day !== 1)
+              date.setHours(-24 * (day - 1));
+            return date;
+          }
+        const monday = getMonday(date);
+        const days = monday - firstweek;
+        const weeks = Math.floor(days / 604800000);
+        setCurweek(weeks+1 > 0 ? weeks+1 : 1);
+        setCurday(date.getDay() % 7);
+    }, [props.user.startweek]);
+
     return (
         <div class="justify-content-center p-2">
             <div class="container  bg-light justify-content-between rounded d-flex ">
@@ -69,7 +85,6 @@ export default function MainBodyContent(props) {
                         </div>
                     </div>
                 </div>
-
                 <SubjectsList subjects={props.user.table[curday + (props.user.twoweeks && (curweek % 2 == 0)) * 7]} curweek={curweek} curday={curday} deadlines={props.user.deadlines}
                 userindex={props.userindex} setuser={props.setuser}/>
                 <AddSubject userindex={props.userindex} curweek={curweek} curday={curday + (props.user.twoweeks && curweek % 2 == 0) * 7} setuser={props.setuser}/>

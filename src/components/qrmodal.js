@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { generateQRCode, parseQRCode } from '../components/utils';
-import User from '../model';
+import { read } from '../localstorageutil';
 
 export default function QRModal(props) {
   const [svg, setSvg] = useState('');
@@ -19,7 +19,7 @@ export default function QRModal(props) {
   };
 
   const generate = async () => {
-    const svgandurl = await generateQRCode(JSON.parse(localStorage.getItem('users')));
+    const svgandurl = await generateQRCode(read()[props.userindex]);
     setSvg(svgandurl.svg);
     setUrl(svgandurl.url);
   }

@@ -22,7 +22,11 @@ export default function Subject(props) {
         <div class="p-2 bg-light rounded shadow">
             <div class="row justify-content-between">
                 <h3 class="col">{subject.name}</h3>
-                <p class="col">{(subject.timestart / 3600).toFixed(0) + ":" + (subject.timestart % 3600 / 60)} - {(subject.timeend / 3600).toFixed(0) + ":" + (subject.timeend % 3600 / 60)}</p>
+                <p class="col">{(((subject.timestart % 3600 / 60)/10)>1)?((subject.timestart / 3600).toFixed(0) + ":" + 
+                (subject.timestart % 3600 / 60)):(subject.timestart / 3600).toFixed(0) + ":0" +
+                 (subject.timestart % 3600 / 60)} - {(((subject.timeend % 3600 / 60)/10)>1)?((subject.timeend / 3600).toFixed(0) + ":" + 
+                (subject.timeend % 3600 / 60)):(subject.timeend / 3600).toFixed(0) + ":0" + 
+                (subject.timeend % 3600 / 60)}</p>
             </div>
             <div class="justify-content-between d-flex">
                 <DeadlineModal subject={subject} name={subject.name} subjectindex={props.subjectindex}

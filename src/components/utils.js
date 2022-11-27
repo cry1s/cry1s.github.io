@@ -54,18 +54,34 @@ function lzw_decode(s) {
 }
 
 const generateQRCode = async (json, host = 'http://localhost:3228') => {
-    const data = lzw_encode(JSON.stringify(json));
+    const data = JSON.stringify(json);
     const b64 = Buffer.from(data).toString('base64');
     host = host.replace(/\/$/, '');
     const url = `${host}/?data=${b64}`;
-    const qr = new QRCodeRaw(url);
-    const svg = new QRCodeSVG(qr);
+    const qr = new QRCodeRaw({
+        content: url,
+        padding: 0,
+        width: 256,
+        height: 256,
+        color: '#000000',
+        background: '#ffffff',
+        ecl: 'M',
+    });
+    const svg = new QRCodeSVG({
+        content: url,
+        padding: 0,
+        width: 256,
+        height: 256,
+        color: '#000000',
+        background: '#ffffff',
+        ecl: 'M',
+    });
     return {svg: svg.toString(),
             url: url};
 };
 
 const parseQRCode = async (b64) => {
-    const data = lzw_encode(Buffer.from(b64, 'base64').toString());
+    const data = Buffer.from(b64, 'base64').toString();
     try {
         const json = JSON.parse(data);
         return json;
