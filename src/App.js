@@ -35,13 +35,13 @@ function App(props) {
     }
   }
   const showQRModal = () => setShowqrbool(true);
-
+  console.log(user);
   return (  
     <div className="App">
-      <UserModal usernames={read().map((user) => user.name)} user={user} setuser={setUser} setUserIndex={setUserIndex} />
+      <UserModal usernames={read().map((user) => user.name)} setuser={setUser} setUserIndex={setUserIndex} />
       {showqrbool && <QRModal setshow={setShowqrbool} onHide={() => setShowqrbool(false)} />}
       <NavBar user={user} setCurNav={setCurNav} />
-      {curNav === CurNav.Table && <MainBodyContent user={user} deadlines={user.deadlines}/>}
+      {curNav === CurNav.Table && <MainBodyContent user={user} deadlines={user.deadlines} userindex={userindex} />}
       {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
       {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
       <div class="footer">
