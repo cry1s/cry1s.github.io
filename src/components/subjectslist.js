@@ -12,7 +12,7 @@ export default function SubjectsList(props)
                     props.deadlines.filter((deadline) => {
                         return deadline.name === subject.name && deadline.day === props.curday && deadline.week === props.curweek;
                     })
-                }/>
+                } curday={props.curday} curweek={props.curweek} userindex={props.userindex} setuser={props.setuser}/>
             ))}
         </div>
     );

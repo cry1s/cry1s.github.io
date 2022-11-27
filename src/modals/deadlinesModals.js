@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { read, write } from '../localstorageutil';
 
-export default function DeadlineModal() {
+export default function DeadlineModal(props) {
   const [show, setShow] = useState(false);
+
+  const secstohhmm = (secs) => {
+    const hours = Math.floor(secs / 3600);
+    const minutes = Math.floor((secs % 3600) / 60);
+    return hours + ':' + minutes;
+  };
 
   const [name, setName] = useState('');
   const [timestart, setTimeStart] = useState('');
@@ -25,6 +32,59 @@ export default function DeadlineModal() {
 
   const handleShow = () => setShow(true);
 
+  const addDeadline = () => {
+    if (!deadlinedescription) {
+      return;
+    }
+    const newdeadline = {
+      name: props.name,
+      week: props.curweek,
+      day: props.curday,
+      description: deadlinedescription,
+    };
+    console.log(newdeadline);
+    const users = read();
+    users[props.userindex].deadlines.push(newdeadline);
+    users[props.userindex].deadlines.sort((a, b) => {
+      if (a.week > b.week) {
+        return 1;
+      }
+      if (a.week < b.week) {
+        return -1;
+      }
+      if (a.day > b.day) {
+        return 1;
+      }
+      if (a.day < b.day) {
+        return -1;
+      }
+      return 0;
+    });
+    write(users);
+    handleClose();
+  };
+
+  const changeSubject = () => {
+    if (!name || !timestart || !timeend || !teacher || !room) {
+      return;
+    }
+    const newsubject = {
+      name: name ? name : props.subject.name,
+      timestart: timestart ? timestart : props.subject.timestart,
+      timeend: timeend ? timeend : props.subject.timeend,
+      prepod: teacher ? teacher : props.subject.teacher,
+      where: room ? room : props.subject.room,
+    };
+    console.log(newsubject);
+    const users = read();
+    users[props.userindex].table[props.curday][props.subjectindex] = newsubject;
+    // sort by timestart
+    users[props.userindex].table[props.curday].sort((a, b) => {
+      return a.timestart - b.timestart;
+    });
+    write(users);
+    handleClose();
+  };
   return (
     <>
       <div class="btn" onClick={handleShow}>
@@ -92,7 +152,7 @@ export default function DeadlineModal() {
           <Button variant="secondary" onClick={handleClose}>
             Отмена
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={() => {addDeadline(); changeSubject();}}>
             Сохранить изменения
           </Button>
         </Modal.Footer>

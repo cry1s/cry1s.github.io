@@ -19,7 +19,8 @@ export default function Subject(props) {
                 <p class="col">{(subject.timestart / 3600).toFixed(0) + ":" + (subject.timestart % 3600 / 60)} - {(subject.timeend / 3600).toFixed(0) + ":" + (subject.timeend % 3600 / 60)}</p>
             </div>
             <div class="justify-content-between d-flex">
-                <DeadlineModal subject={subject} deadline={deadline} />
+                <DeadlineModal subject={subject} deadline={deadline} name={subject.name} subjectindex={props.key}
+                curday={props.curday} curweek={props.curweek} userindex={props.userindex} setuser={props.setuser}/>
                 <div class="container border-start border-3 ">{deadline}</div>
             </div>
         </div>
