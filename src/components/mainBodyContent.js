@@ -45,7 +45,6 @@ export default function MainBodyContent(props) {
         const days = monday - firstweek;
         const weeks = Math.floor(days / 604800000);
         setCurweek(weeks+1 > 0 ? weeks+1 : 1);
-        setCurday(date.getDay() % 7);
     }, [props.user.startweek]);
 
     return (

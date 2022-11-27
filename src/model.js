@@ -429,20 +429,8 @@ export default class User {
         this.deadlines = [
             {
                 name: "Физика",
-                week: 12,
-                day: 8,
-                description: "Сдать лабу по физике",
-            },
-            {
-                name: "Физика",
-                week: 10,
-                day: 8,
-                description: "Сдать лабу по физике",
-            },
-            {
-                name: "Физика",
-                week: 8,
-                day: 8,
+                week: 1,
+                day: 0,
                 description: "Сдать лабу по физике",
             },
         ]

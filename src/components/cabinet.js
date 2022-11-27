@@ -60,6 +60,22 @@ export default function Cabinet(props) {
         }
     }
 
+    const deleteAccount = () => {
+        if (oldpassword !== '') {
+            if (oldpassword === user.password) {
+                const users = read();
+                users.splice(props.userindex, 1);
+                write(users);
+                props.setuser(users[0]);
+                setUser(users[0]);
+                setOldpassword('');
+            } else {
+                alert('Неверный пароль');
+            }
+        }
+        window.location.reload()
+    }
+
     return (
 
         <div class="justify-content-center p-2 rounded m-0">
@@ -103,6 +119,15 @@ export default function Cabinet(props) {
                         </div>
 
                     </div>
+                    <div class="col-11 bg-light my-4 p-2 px-3 rounded border shadow">
+                        <p class = "mb-0">Удалить пользователя</p>
+                        <div class="container m-0 p-0 ">
+                            <div class="row justify-content-between">
+                        <div class="col mb-3"><input type="password" class="form-control" placeholder="Пароль"
+                            value={oldpassword} onChange={(e) => setOldpassword(e.target.value)} /></div>
+                        <div class="col-auto "><button class="btn btn-danger" onClick={() => {deleteAccount()}}>Удалить</button></div></div>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>
