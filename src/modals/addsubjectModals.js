@@ -48,6 +48,7 @@ export default function AddSubject(props) {
       return a.timestart - b.timestart;
     });
     write(users);
+    props.setuser(users[props.userindex]);
     handleClose();
   }
 
