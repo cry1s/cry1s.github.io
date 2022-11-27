@@ -9,17 +9,11 @@ export default function UserModals(props) {
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [usernames, setUsernames] = useState(read().map((user) => user.name));
+  const [usernames, setUsernames] = useState(props.usernames);
 
   const updateList = () => {
     const users = read();
     setUsernames(users.map(user => user.name));
-  };
-
-  const login = (username) => {
-    props.setuser(username);
-    props.setUserIndex(usernames.indexOf(username));
-    handleClose();
   };
   
   return (
@@ -29,9 +23,12 @@ export default function UserModals(props) {
           <Modal.Title>Выберите пользователя или создайте нового</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
         {
           usernames.map((username, index) => (
-            <PasswordModal key={index} username={username} setuser={login} />
+            <div class="container m-2">
+              <PasswordModal key={index} username={username} />
+            </div>
           ))
         }
         </Modal.Body>
