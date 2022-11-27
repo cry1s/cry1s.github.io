@@ -64,6 +64,7 @@ export default function Cabinet(props) {
 
         <div class="justify-content-center p-2 rounded m-0">
             <div class="row justify-content-center">
+                <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 px-3 my-3">
                     <div class="col-auto rounded mx-auto mt-3 bg-light"><h2 class="text-center">Кабинет пользователя {user.name}</h2></div>
 
                     <div class="col-11 bg-light mt-4 p-2 px-3 rounded border shadow">
@@ -92,11 +93,15 @@ export default function Cabinet(props) {
                         </div>
                     </div>
 
-                    <div class="col-auto bg-light my-4 p-2 px-3 rounded border shadow">
+                    <div class="col-11 bg-light my-4 p-2 px-3 rounded border shadow">
                         <p class = "mb-0">Стартовая неделя</p>
-                        <input type="date" class="form-control" value={startweek} onChange={(e) => setStartweek(e.target.value)} />
+                        <div class="container m-0 p-0 ">
+                            <div class="row justify-content-between">
+                        <div class="col mb-3"><input type="date" class="form-control" value={startweek} onChange={(e) => setStartweek(e.target.value)} /></div>
                         <div class="col-auto "><button class="btn btn-primary" 
-                                onClick={changeStartWeek}>Изменить</button></div>
+                                onClick={changeStartWeek}>Изменить</button></div></div>
+                        </div>
+
                     </div>
                     
                     <div class="col-11 bg-light mt-4 p-2 px-3 rounded border shadow">   
@@ -108,6 +113,7 @@ export default function Cabinet(props) {
                             <label class = " text-center">Числитель и знаменатель</label>  
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     );
