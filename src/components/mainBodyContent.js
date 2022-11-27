@@ -50,13 +50,13 @@ export default function MainBodyContent(props) {
 
     return (
         <div class="justify-content-center p-2">
-            <div class="container  bg-light justify-content-between rounded d-flex ">
+            <div class="container border shadow bg-light justify-content-between rounded d-flex ">
                 <button type="button" class="btn" onClick = {handlerClickStrelkaLeft}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"></path>
                     </svg>
                 </button>
-                <h3>{curweek} неделя</h3>
+                <h3 class="mt-1 py-0">{curweek} неделя</h3>
                 <button type="button" class="btn" onClick={handlerClickStrelkaRight}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"></path>
@@ -66,7 +66,7 @@ export default function MainBodyContent(props) {
 
             <div class="container justify-content-center">
                 <div class="row justify-content-center">
-                    <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 px-3 my-3">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-5 px-3 my-3">
                         <div class="row justify-content-between">
                             <button class="col-auto btn rounded" onClick={() => changeDay(0)} 
                                 style={{background: IsActive == 0 ? "SkyBlue" : "white"}}>Пн</button>   
@@ -87,7 +87,7 @@ export default function MainBodyContent(props) {
                 </div>
                 <SubjectsList subjects={props.user.table[curday + (props.user.twoweeks && (curweek % 2 == 0)) * 7]} curweek={curweek} curday={curday} deadlines={props.user.deadlines}
                 userindex={props.userindex} setuser={props.setuser}/>
-                <AddSubject userindex={props.userindex} curweek={curweek} curday={curday + (props.user.twoweeks && curweek % 2 == 0) * 7} setuser={props.setuser}/>
+                <div><AddSubject userindex={props.userindex} curweek={curweek} curday={curday + (props.user.twoweeks && curweek % 2 == 0) * 7} setuser={props.setuser}/></div>
             </div>
         </div>
     );

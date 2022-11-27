@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 
 export default function NavBar(props) {
     const [user, setUser] = useState({});
-    const [isActive, setIsActive] = useState(0);
+    const [IsActive, setIsActive] = useState(0);
     useEffect(() => {
         setUser(props.user);
     }, [props.user]);
@@ -32,9 +32,9 @@ export default function NavBar(props) {
                 </div>
                 <div class="col-10">
                     <div class="d-flex justify-content-center pt-3">
-                        <button class="btn rounded-0 rounded-top" onClick={onHome} >Расписание</button>
-                        <button class="btn rounded-0 rounded-top" onClick={onDeadlines} >Дедлайны</button>
-                        <button class="btn rounded-0 rounded-top" onClick={onCabinet} >Кабинет</button>    
+                        <button class="btn rounded-0 rounded-3" onClick={onHome} style ={{backgroundColor: IsActive === 0 ? 'SkyBlue' : 'white'}}>Расписание</button>
+                        <button class="btn rounded-0 rounded-3" onClick={onDeadlines} style ={{backgroundColor: IsActive === 1 ? 'SkyBlue' : 'white'}}>Дедлайны</button>
+                        <button class="btn rounded-0 rounded-3" onClick={onCabinet} style ={{backgroundColor: IsActive === 2 ? 'SkyBlue' : 'white'}}>Кабинет</button> 
                     </div>
                 </div>
                 <div class="col-1">
