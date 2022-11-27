@@ -17,7 +17,7 @@ export default function UserModals(props) {
   };
   
   const login = (username) => {
-    props.setuser(username);
+    props.setuser(read().find(user => user.name === username));
     props.setUserIndex(usernames.indexOf(username));
     handleClose();
   };
@@ -25,7 +25,7 @@ export default function UserModals(props) {
   return (
     <>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Выберите пользователя или создайте нового</Modal.Title>
         </Modal.Header>
         <Modal.Body>
