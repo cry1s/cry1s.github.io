@@ -19,6 +19,7 @@ export default function UserModals(props) {
   const login = (username) => {
     props.setuser(read().find(user => user.name === username));
     props.setUserIndex(usernames.indexOf(username));
+    console.log(read().find(user => user.name === username));
     handleClose();
   };
 

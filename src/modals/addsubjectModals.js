@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { read, write } from '../localstorageutil';
 
 export default function AddSubject(props) {
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   // fields
@@ -15,7 +15,41 @@ export default function AddSubject(props) {
   const [timestart, setTimeStart] = useState('');
   const [timeend, setTimeEnd] = useState('');
 
-  const addSubject = () => {}
+  const handleClose = () => {
+    setShow(false);
+    setName('');
+    setTeacher('');
+    setRoom('');
+    setTimeStart('');
+    setTimeEnd('');
+  }
+
+  const addSubject = () => {
+    if (name === '' || timestart === '' || timeend === '') {
+      alert('Заполните название предмета и время начала и конца занятия');
+      return;
+    }
+    const hhmmtosecs = (hhmm) => {
+      const [hh, mm] = hhmm.split(':');
+      return parseInt(hh) * 3600 + parseInt(mm) * 60;
+    }
+
+    const subject = {
+      name: name,
+      prepod: teacher,
+      where: room,
+      timestart: hhmmtosecs(timestart),
+      timeend: hhmmtosecs(timeend),
+    };
+    const users = read()
+    users[props.userindex].table[props.curday].push(subject);
+    // sort by timestart
+    users[props.userindex].table[props.curday].sort((a, b) => {
+      return a.timestart - b.timestart;
+    });
+    write(users);
+    handleClose();
+  }
 
   return (
     <>
@@ -37,23 +71,37 @@ export default function AddSubject(props) {
                 type="text"
                 placeholder="Название предмета"
                 autoFocus
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Время начала</Form.Label>
-              <Form.Control type="time" />
+              <Form.Control type="time"
+                value={timestart}
+                onChange={(e) => setTimeStart(e.target.value)}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Время окончания</Form.Label>
-              <Form.Control type="time" />
+              <Form.Control type="time"
+                value={timeend}
+                onChange={(e) => setTimeEnd(e.target.value)}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Преподаватель</Form.Label>
-              <Form.Control type="text" placeholder="Преподаватель" />
+              <Form.Control type="text" placeholder="Преподаватель"
+                value={teacher}
+                onChange={(e) => setTeacher(e.target.value)}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Аудитория/кабинет</Form.Label>
-              <Form.Control type="text" placeholder="Аудитория/кабинет" />
+              <Form.Control type="text" placeholder="Аудитория/кабинет"
+                value={room}
+                onChange={(e) => setRoom(e.target.value)}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -61,7 +109,7 @@ export default function AddSubject(props) {
           <Button variant="secondary" onClick={handleClose}>
             Отмена
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={addSubject}>
             Добавить предмет
           </Button>
         </Modal.Footer>
