@@ -61,11 +61,12 @@ export default function DeadlineModal(props) {
       return 0;
     });
     write(users);
+    props.setuser(users[props.userindex]);
     handleClose();
   };
 
   const changeSubject = () => {
-    if (!name || !timestart || !timeend || !teacher || !room) {
+    if (!name && !timestart && !timeend && !teacher && !room) {
       return;
     }
     const newsubject = {
@@ -82,7 +83,15 @@ export default function DeadlineModal(props) {
     users[props.userindex].table[props.curday].sort((a, b) => {
       return a.timestart - b.timestart;
     });
+    if (name) {
+      users[props.userindex].deadlines.map((deadline) => {
+        if (deadline.name === props.subject.name) {
+          deadline.name = name;
+        }
+      });
+    }
     write(users);
+    props.setuser(users[props.userindex]);
     handleClose();
   };
   return (
