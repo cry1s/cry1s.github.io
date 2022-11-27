@@ -22,6 +22,7 @@ export default function UserModals(props) {
           <Modal.Title>Выберите пользователя или создайте нового</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
         {
           usernames.map((username, index) => (
             <div class="container m-2">
@@ -29,6 +30,7 @@ export default function UserModals(props) {
             </div>
           ))
         }
+        <PasswordModal key={index} username={username} />
         </Modal.Body>
         <Modal.Footer>
           <UserCreateModals updatelist={updateList} />
