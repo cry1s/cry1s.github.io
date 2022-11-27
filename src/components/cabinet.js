@@ -65,7 +65,7 @@ export default function Cabinet(props) {
         <div class="justify-content-center p-2 rounded m-0">
             <div class="row justify-content-center">
                 <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 px-3 my-3">
-                    <div class="col-auto rounded mx-auto mt-3 bg-light"><h2 class="text-center">Кабинет пользователя {user.name}</h2></div>
+                    <div class="col-auto rounded mx-auto mt-3 "><h2 class="text-center">Кабинет пользователя {user.name}</h2></div>
 
                     <div class="col-11 bg-light mt-4 p-2 px-3 rounded border shadow">
                         <label for="exampleInputPassword1" class = "mb-2" >Изменить пароль</label>
