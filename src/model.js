@@ -430,19 +430,19 @@ export default class User {
             {
                 name: "Физика",
                 week: 12,
-                day: 2,
+                day: 8,
                 description: "Сдать лабу по физике",
             },
             {
                 name: "Физика",
                 week: 10,
-                day: 2,
+                day: 8,
                 description: "Сдать лабу по физике",
             },
             {
                 name: "Физика",
                 week: 8,
-                day: 2,
+                day: 8,
                 description: "Сдать лабу по физике",
             },
         ]

@@ -33,8 +33,8 @@ export default function UserModals(props) {
 
         {
           usernames.map((username, index) => (
-            <div class="container m-2">
-              <PasswordModal key={index} username={username} setuser={login}/>
+            <div class="container m-2" key={index}>
+              <PasswordModal username={username} setuser={login}/>
             </div>
           ))
         }
