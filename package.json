@@ -12,6 +12,7 @@
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "node-gzip": "^1.1.2",
+    "pastebin-api": "^5.1.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
