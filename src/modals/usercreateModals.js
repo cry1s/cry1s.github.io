@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import User from '../model'
-import { add } from '../localstorageutil'
+import { add, read } from '../localstorageutil'
 
 export default function UserCreateModals(props) {
   const [show, setShow] = useState(false);
@@ -24,6 +24,14 @@ export default function UserCreateModals(props) {
   }
   
   const createUser = () => {
+    if (username === '' || password === '' || !firstweek) {
+      alert('Заполните все поля');
+      return;
+    }
+    if (read().find(user => user.name === username)) {
+      alert('Пользователь с таким именем уже существует');
+      return;
+    }
     const date = new Date(firstweek);
     const monday = getMonday(date);
     const user = new User();
