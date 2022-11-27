@@ -39,11 +39,11 @@ function App(props) {
   return (  
     <div className="App">
       <UserModal usernames={read().map((user) => user.name)} setuser={setUser} setUserIndex={setUserIndex} />
-      {showqrbool && <QRModal setshow={setShowqrbool} onHide={() => setShowqrbool(false)} />}
+      {showqrbool && <QRModal userindex={userindex} setshow={setShowqrbool} onHide={() => setShowqrbool(false)} />}
       <NavBar user={user} setCurNav={setCurNav} />
       {curNav === CurNav.Table && <MainBodyContent user={user} deadlines={user.deadlines} userindex={userindex} setuser={setUser}/>}
       {curNav === CurNav.Deadlines && <Deadlinelist deadlines={user.deadlines}/>}
-      {curNav === CurNav.Cabinet && <Cabinet user={user}/>}
+      {curNav === CurNav.Cabinet && <Cabinet user={user} userindex={userindex} setuser={setUser}/>}
       <div class="footer m">
         <div class="row justify-content-between mx-2">
           <div class="col-auto">
