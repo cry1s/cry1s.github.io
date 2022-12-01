@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useTransition } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { generateQRCode, parseQRCode } from '../components/utils';
+import { generateURL, parseURL } from '../utils';
 import { read } from '../localstorageutil';
+import { QRCodeSVG } from 'qrcode.react';
+import { Container } from 'react-bootstrap';
 
 export default function QRModal(props) {
-  const [svg, setSvg] = useState('');
   const [url, setUrl] = useState('');
   const [inputUrl, setInputUrl] = useState('');
+
   const createUser = async () => {
-    const json = parseQRCode(inputUrl);
+    const json = parseURL(inputUrl);
     if (json) {
       const localusers = localStorage.getItem('users')
       const users = localusers ? JSON.parse(localusers) : [];
       users.push(json);
       localStorage.setItem('users', JSON.stringify(users));
     }
+    props.setshow(false)
   };
 
   const generate = async () => {
-    const svgandurl = await generateQRCode(read()[props.userindex]);
-    setSvg(svgandurl.svg);
-    setUrl(svgandurl.url);
+    const url = await generateURL(read()[props.userindex]);
+    setUrl(url);
   }
     
   useEffect(() => {
@@ -34,10 +36,14 @@ export default function QRModal(props) {
         <Modal.Header closeButton>
           <Modal.Title>Ваш QR-код</Modal.Title>
         </Modal.Header>
+        <Container className='justify-content-center'>
         <Modal.Body>
-          <div dangerouslySetInnerHTML={{__html: svg}} />
+          <Container className='justify-content-center'>
+            <QRCodeSVG height={"100%"} width={"100%"} value={url}/>
+          </Container>
           <input type="text" value={url} onChange={(e) => setInputUrl(e.target.value)} />
         </Modal.Body>
+        </Container>
         <Modal.Footer>
           <Button variant="primary" onClick={() => props.setshow(false)}>
             Импортировать из ссылки

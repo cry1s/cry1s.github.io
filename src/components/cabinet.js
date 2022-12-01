@@ -12,11 +12,15 @@ export default function Cabinet(props) {
     const changeName = () => {
         if (newname !== '') {
             const users = read();
-            users[props.userindex].name = newname;
-            write(users);
-            props.setuser(users[props.userindex]);
-            setUser(users[props.userindex]);
-            setNewname('');
+            if (users.findIndex(u => u.name === newname) === -1) {
+                users[props.userindex].name = newname;
+                write(users);
+                props.setuser(users[props.userindex]);
+                setUser(users[props.userindex]);
+                setNewname('');
+            } else {
+                alert('Пользователь с таким именем уже существует');
+            }
         }
     }
 

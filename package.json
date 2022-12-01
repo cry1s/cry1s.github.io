@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://cry1s.github.io/dumaem2",
   "dependencies": {
-    "@cheprasov/qrcode": "^0.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,8 +11,10 @@
     "bootstrap-icons": "^1.10.2",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
+    "compress-json": "^2.1.2",
     "node-gzip": "^1.1.2",
     "pastebin-api": "^5.1.5",
+    "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",

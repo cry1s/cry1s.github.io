@@ -6,8 +6,8 @@ import Deadlinelist from './components/deadlinelist';
 import UserModal from './modals/userListModals';
 import User  from './model';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import QRModal from './components/qrmodal';
-import { parseQRCode } from './components/utils';
+import QRModal from './modals/qrmodal';
+import { parseURL } from './utils';
 import {read, write, add} from './localstorageutil';
 import { useSearchParams } from 'react-router-dom';
 
@@ -24,14 +24,14 @@ function App(props) {
   const [showqrbool, setShowqrbool] = useState(false);
   const [data, setData] = useSearchParams();
   if (data.get('data') !== null) {
-    const user = parseQRCode(data.get('data'));
+    const user = parseURL(data.get('data'));
+    data.set('data', '');
+    window.history.replaceState(null, null, window.location.pathname);
+    console.log(user);
     if (user !== null && user.name) {
       if (read().findIndex(u => u.name === user.name) === -1) {
         add(user);
-      } else {
-        alert('Пользователь с таким именем уже существует');
       }
-      setData(new URLSearchParams());
     }
   }
   const showQRModal = () => setShowqrbool(true);
